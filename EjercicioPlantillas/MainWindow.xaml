@@ -1,0 +1,42 @@
+﻿<Window x:Class="EjercicioPlantillas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EjercicioPlantillas"
+        mc:Ignorable="d"
+        Title="Personas" Height="450" Width="800" Icon="32.ico">
+
+    <Window.Resources>
+        <Style TargetType="Image" x:Key="imagen">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Mujer}" Value="true" >
+                    <Setter Property="Source" Value="mujer.png"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Mujer}" Value="false" >
+                    <Setter Property="Source" Value="hombre.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <DataTemplate x:Key="plantilla">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Width="30" Height="30">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding Foto}"></ImageBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <TextBlock>
+                    <Run Text="{Binding Nombre}"/>
+                </TextBlock>
+                <Image Width="30" Height="30"></Image>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+    
+    <Grid>
+        <TextBlock></TextBlock>
+        <ComboBox Width="100" Height="100" x:Name="PersonasComboBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource plantilla}" SelectedValuePath="Id">
+            
+        </ComboBox>
+    </Grid>
+</Window>
