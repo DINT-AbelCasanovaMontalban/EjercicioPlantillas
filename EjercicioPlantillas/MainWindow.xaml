@@ -7,13 +7,16 @@
         mc:Ignorable="d"
         Title="Personas" Height="450" Width="800" Icon="32.ico">
 
+    
+    
     <Window.Resources>
-        <Style TargetType="Image" x:Key="imagen">
+        <local:Convertidor x:Key="convertidor"></local:Convertidor>
+            <Style TargetType="Image" x:Key="imagen">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Mujer}" Value="true" >
+                <DataTrigger Binding="{Binding Sexo}" Value="Mujer">
                     <Setter Property="Source" Value="mujer.png"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Mujer}" Value="false" >
+                <DataTrigger Binding="{Binding Sexo}" Value="Hombre">
                     <Setter Property="Source" Value="hombre.png"/>
                 </DataTrigger>
             </Style.Triggers>
@@ -28,15 +31,15 @@
                 <TextBlock>
                     <Run Text="{Binding Nombre}"/>
                 </TextBlock>
-                <Image Width="30" Height="30"></Image>
+                <Image Style="{StaticResource imagen}" Width="30" Height="30"></Image>
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
-    
-    <Grid>
-        <TextBlock></TextBlock>
-        <ComboBox Width="100" Height="100" x:Name="PersonasComboBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource plantilla}" SelectedValuePath="Id">
-            
+
+    <StackPanel>
+        
+        <ComboBox Width="140" Height="60" x:Name="PersonasComboBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource plantilla}" SelectedValuePath="Id">
+            <TextBlock></TextBlock>
         </ComboBox>
-    </Grid>
+    </StackPanel>
 </Window>
